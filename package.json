@@ -1,15 +1,15 @@
 {
   "name": "mdownpad",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3030",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "markdown-it": "^14.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
