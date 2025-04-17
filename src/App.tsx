@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
 import MarkdownIt from 'markdown-it'
+import markdownItGraph from 'markdown-it-graph'
 
 const md = new MarkdownIt()
-// md.use(markdownItGraph)
+md.use(markdownItGraph)
 
 function App() {
-  const [input, setInput] = useState("")
+  const [input, setInput] = useState(`\`\`\`graph bar
+Jan | █████ 5
+Feb | █████████ 8
+\`\`\``)
 
   const [rendered, setRendered] = useState('')
 
