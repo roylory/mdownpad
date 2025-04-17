@@ -46,19 +46,37 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
   const labels = data.map((d) => d.label)
   const values = data.map((d) => d.value)
 
-  const chartData: ChartData<'bar' | 'line' | 'pie' | 'scatter'> = {
-    labels,
-    datasets: [
-      {
-        label: `${type.toUpperCase()} Chart`,
-        data: values,
-        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-        pointRadius: 5
+  // Special handling for dot (scatter) chart
+  const scatterPoints = data.map((d) => ({
+    x: parseFloat(d.label),
+    y: d.value
+  }))
+
+  const chartData: ChartData<'bar' | 'line' | 'pie' | 'scatter'> =
+    type === 'dot'
+      ? {
+        datasets: [
+          {
+            label: 'Scatter Plot',
+            data: scatterPoints,
+            backgroundColor: 'rgba(75, 192, 192, 1)',
+            pointRadius: 5
+          }
+        ]
       }
-    ]
-  }
+      : {
+        labels,
+        datasets: [
+          {
+            label: `${type.toUpperCase()} Chart`,
+            data: values,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+            pointRadius: 5
+          }
+        ]
+      }
 
   const options: ChartOptions = {
     responsive: true,
