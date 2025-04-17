@@ -52,31 +52,53 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
     y: d.value
   }))
 
+  const pieColors = [
+    '#60a5fa', // blue
+    '#f87171', // red
+    '#34d399', // green
+    '#fbbf24', // yellow
+    '#a78bfa', // purple
+    '#f472b6', // pink
+    '#facc15', // amber
+    '#10b981'  // emerald
+  ]
+
   const chartData: ChartData<'bar' | 'line' | 'pie' | 'scatter'> =
-    type === 'dot'
+    type === 'pie'
       ? {
-        datasets: [
-          {
-            label: 'Scatter Plot',
-            data: scatterPoints,
-            backgroundColor: 'rgba(75, 192, 192, 1)',
-            pointRadius: 5
-          }
-        ]
-      }
-      : {
         labels,
         datasets: [
           {
-            label: `${type.toUpperCase()} Chart`,
+            label: 'Pie Chart',
             data: values,
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-            pointRadius: 5
+            backgroundColor: data.map((_, i) => pieColors[i % pieColors.length])
           }
         ]
-      }
+      } :
+      type === 'dot'
+        ? {
+          datasets: [
+            {
+              label: 'Scatter Plot',
+              data: scatterPoints,
+              backgroundColor: 'rgba(75, 192, 192, 1)',
+              pointRadius: 5
+            }
+          ]
+        }
+        : {
+          labels,
+          datasets: [
+            {
+              label: `${type.toUpperCase()} Chart`,
+              data: values,
+              backgroundColor: 'rgba(75, 192, 192, 0.5)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              pointRadius: 5
+            }
+          ]
+        }
 
   const options: ChartOptions = {
     responsive: true,

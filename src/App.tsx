@@ -7,11 +7,35 @@ import markdownItGraph from 'markdown-it-graph'
 const md = new MarkdownIt()
 md.use(markdownItGraph)
 
-function App() {
-  const [input, setInput] = useState(`\`\`\`graph bar
+const sampleInput = `
+\`\`\`graph bar
 Jan | █████ 5
 Feb | █████████ 8
-\`\`\``)
+Mar | ███████████ 77
+\`\`\`
+
+\`\`\`graph pie
+Positive | 22
+Negative | 11
+Neutral | 33
+\`\`\`
+
+\`\`\`graph line
+Jan | █████ 5
+Feb | █████████ 8
+Mar | █████████ 8
+\`\`\`
+
+\`\`\`graph dot
+2 | 55
+3 | 60
+4 | 70
+6 | 85
+\`\`\`
+`
+
+function App() {
+  const [input, setInput] = useState(sampleInput)
 
   const [rendered, setRendered] = useState('')
 
