@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import ReactDOM from 'react-dom/client'
+import GraphBlock from "./components/GraphBlock"
 import MarkdownIt from 'markdown-it'
 import markdownItGraph from 'markdown-it-graph'
 
@@ -16,6 +18,27 @@ Feb | █████████ 8
   useEffect(() => {
     setRendered(md.render(input))
   }, [input])
+
+  // After rendered HTML is set
+  useEffect(() => {
+    const blocks = document.querySelectorAll('graph-block')
+
+    blocks.forEach((el) => {
+      const graphEl = el as HTMLElement
+      const graphDataAttr = graphEl.getAttribute('data-graph')
+
+      if (!graphDataAttr) return
+
+      try {
+        const graphData = JSON.parse(graphDataAttr)
+
+        const root = ReactDOM.createRoot(graphEl)
+        root.render(<GraphBlock {...graphData} />)
+      } catch (err) {
+        console.error('Failed to render <graph-block>', err)
+      }
+    })
+  }, [rendered])
 
   return (
     <div className="flex h-screen flex-col">
