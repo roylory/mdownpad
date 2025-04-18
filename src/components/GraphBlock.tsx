@@ -100,7 +100,21 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
   const options: ChartOptions = {
     responsive: true,
     plugins: {
-      legend: { display: false }
+      legend: {
+        display: type === 'pie', // show only for pie
+        position: 'bottom',
+        labels: {
+          color: '#6b7280', // Tailwind gray-500 for subtlety
+          font: {
+            size: 12
+          }
+        }
+      },
+      tooltip: {
+        backgroundColor: '#1f2937',
+        titleColor: '#fff',
+        bodyColor: '#fff'
+      }
     }
   }
 
