@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import GraphBlock from "./components/GraphBlock"
 import MarkdownIt from 'markdown-it'
 import markdownItGraph from 'markdown-it-graph'
+import Header from "./components/Header"
 
 const md = new MarkdownIt()
 md.use(markdownItGraph)
@@ -63,9 +64,7 @@ function App() {
 
   return (
     <div className="flex h-screen flex-col">
-      <header className="text-center text-lg font-semibold py-2 border-b">
-        mdownpad
-      </header>
+      <Header />
       <div className="flex flex-1">
         <div className="w-1/2 flex flex-col border-r">
           <div className="bg-gray-100 px-4 py-2 text-xs font-medium text-gray-600 border-b">
