@@ -8,6 +8,8 @@ const md = new MarkdownIt()
 md.use(markdownItGraph)
 
 const sampleInput = `
+## Markdown with Graph Chart
+
 \`\`\`graph bar
 Jan | █████ 5
 Feb | █████████ 8
@@ -24,6 +26,8 @@ Neutral | 33
 Jan | █████ 5
 Feb | █████████ 8
 Mar | █████████ 8
+Apr | 0
+May | ████ 3
 \`\`\`
 `
 
