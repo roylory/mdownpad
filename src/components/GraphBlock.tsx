@@ -69,7 +69,6 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
         labels,
         datasets: [
           {
-            label: 'Pie Chart',
             data: values,
             backgroundColor: data.map((_, i) => pieColors[i % pieColors.length])
           }
@@ -79,7 +78,6 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
         ? {
           datasets: [
             {
-              label: 'Scatter Plot',
               data: scatterPoints,
               backgroundColor: 'rgba(75, 192, 192, 1)',
               pointRadius: 5
@@ -90,7 +88,6 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
           labels,
           datasets: [
             {
-              label: `${type.toUpperCase()} Chart`,
               data: values,
               backgroundColor: 'rgba(75, 192, 192, 0.5)',
               borderColor: 'rgba(75, 192, 192, 1)',
@@ -117,9 +114,15 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
 
   const ChartComponent = chartComponents[type] || Bar
 
+  const isPie = type === 'pie'
+
   return (
-    <div className="my-4">
-      <ChartComponent data={chartData} options={options} />
+    <div className="my-6 px-4">
+      <div
+        className={`${isPie ? 'max-w-xs' : 'max-w-lg'}`}
+      >
+        <ChartComponent data={chartData} options={options} />
+      </div>
     </div>
   )
 }
