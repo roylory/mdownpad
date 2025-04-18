@@ -2,7 +2,6 @@ import {
   Bar,
   Line,
   Pie,
-  Scatter
 } from 'react-chartjs-2'
 import {
   Chart as ChartJS,
@@ -30,7 +29,7 @@ ChartJS.register(
   Legend
 )
 
-type GraphType = 'bar' | 'line' | 'pie' | 'dot'
+type GraphType = 'bar' | 'line' | 'pie'
 
 interface GraphDatum {
   label: string
@@ -45,12 +44,6 @@ interface GraphBlockProps {
 const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
   const labels = data.map((d) => d.label)
   const values = data.map((d) => d.value)
-
-  // Special handling for dot (scatter) chart
-  const scatterPoints = data.map((d) => ({
-    x: parseFloat(d.label),
-    y: d.value
-  }))
 
   const pieColors = [
     '#60a5fa', // blue
@@ -73,29 +66,19 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
             backgroundColor: data.map((_, i) => pieColors[i % pieColors.length])
           }
         ]
-      } :
-      type === 'dot'
-        ? {
-          datasets: [
-            {
-              data: scatterPoints,
-              backgroundColor: 'rgba(75, 192, 192, 1)',
-              pointRadius: 5
-            }
-          ]
-        }
-        : {
-          labels,
-          datasets: [
-            {
-              data: values,
-              backgroundColor: 'rgba(75, 192, 192, 0.5)',
-              borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1,
-              pointRadius: 5
-            }
-          ]
-        }
+      }
+      : {
+        labels,
+        datasets: [
+          {
+            data: values,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+            pointRadius: 5
+          }
+        ]
+      }
 
   const options: ChartOptions = {
     responsive: true,
@@ -123,7 +106,6 @@ const GraphBlock: FC<GraphBlockProps> = ({ type, data }) => {
     bar: Bar,
     line: Line,
     pie: Pie,
-    dot: Scatter
   }
 
   const ChartComponent = chartComponents[type] || Bar
