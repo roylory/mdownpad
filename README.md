@@ -1,6 +1,6 @@
 # mdownpad
 
-> A minimal Markdown editor and live previewer built to demonstrate [`markdown-it-graph`](https://github.com/YOUR_USERNAME/markdown-it-graph).
+> A minimal Markdown editor and live previewer built to demonstrate [`markdown-it-graph`](https://github.com/roylory/markdown-it-graph).
 
 This project is a lightweight playground for parsing and rendering custom `graph` blocks using [`markdown-it`](https://github.com/markdown-it/markdown-it) and `react-chartjs-2`.
 
