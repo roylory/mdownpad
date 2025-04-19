@@ -29,7 +29,7 @@ This outputs the final static files to the `dist/` directory.
 
 ## 🔗 Related Project
 
-- [`markdown-it-graph`](https://github.com/YOUR_USERNAME/markdown-it-graph) — The Markdown-it plugin that powers the chart syntax support.
+- [`markdown-it-graph`](https://github.com/roylory/markdown-it-graph) — The Markdown-it plugin that powers the chart syntax support.
 
 ---
 
